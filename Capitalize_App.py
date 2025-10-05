@@ -74,8 +74,7 @@ st.markdown("""
 **Group Members:**  
 - Walter Nyamutamba  
 - Sylvestre Mukiza 
-- Mireille IRAKOZE 
-- Patrick Nizetimana  
+- Mireille IRAKOZE  
 - Joelle SAFI
 """)
 st.title("🤖 Meet Your Friendly Robot!")
@@ -138,6 +137,7 @@ if input_text:
         file_name="corrected_text.txt",
         mime="text/plain"
     )
+
 
 
 
