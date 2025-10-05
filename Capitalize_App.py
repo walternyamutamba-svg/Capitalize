@@ -1,8 +1,9 @@
 import streamlit as st
+import io
 
-# ---------------------------
-# Your capitalization function
-# ---------------------------
+# -----------------------------------
+# Capitalization Function
+# -----------------------------------
 def capitalize_smartly(text: str) -> str:
     # Step 0: strip leading/trailing spaces, preserve line breaks
     lines = [line.strip() for line in text.strip().splitlines()]
@@ -58,29 +59,56 @@ def capitalize_smartly(text: str) -> str:
     return "\n".join(corrected_lines)
 
 
-# ---------------------------
-# Streamlit UI
-# ---------------------------
+# -----------------------------------
+# Streamlit App
+# -----------------------------------
 st.set_page_config(page_title="Smart Capitalizer", page_icon="📝", layout="centered")
-
 st.title("📝 Smart Text Capitalizer")
 st.write(
-    "Paste your text below and click **Capitalize** to fix capitalization, spacing, and punctuation automatically."
+    "This app automatically fixes capitalization, spacing, and punctuation. "
+    "You can either type text manually or upload a `.txt` file."
 )
 
-# Text input area
-user_input = st.text_area("Enter your text:", height=200, placeholder="Type or paste text here...")
+# Tabs for input method
+tab1, tab2 = st.tabs(["✍️ Type Text", "📂 Upload File"])
 
-# Button to process
-if st.button("Capitalize"):
-    if user_input.strip():
-        result = capitalize_smartly(user_input)
-        st.subheader("✅ Corrected Text:")
-        st.text_area("Output", value=result, height=200)
-    else:
-        st.warning("⚠️ Please enter some text before capitalizing.")
+input_text = ""  # variable to hold text
 
-# Optional: Footer
-st.markdown("---")
-st.caption("Built with ❤️ using Streamlit and Python")
+# Tab 1: Manual Input
+with tab1:
+    typed_text = st.text_area("Enter your text here:", height=200, placeholder="Type or paste your text...")
+    if st.button("Capitalize Typed Text"):
+        if typed_text.strip():
+            input_text = typed_text
+        else:
+            st.warning("⚠️ Please type something before capitalizing.")
 
+# Tab 2: File Upload
+with tab2:
+    uploaded_file = st.file_uploader("Upload a .txt file", type=["txt"])
+    if uploaded_file is not None:
+        file_text = uploaded_file.read().decode("utf-8")
+        st.text_area("📄 File Content", value=file_text, height=200)
+        if st.button("Capitalize Uploaded File"):
+            if file_text.strip():
+                input_text = file_text
+            else:
+                st.warning("⚠️ The file is empty.")
+
+# -----------------------------------
+# Output Section
+# -----------------------------------
+if input_text:
+    corrected_text = capitalize_smartly(input_text)
+
+    st.subheader("✅ Corrected Text:")
+    st.text_area("Output", value=corrected_text, height=200)
+
+    # Download Button
+    output_buffer = io.StringIO(corrected_text)
+    st.download_button(
+        label="💾 Download Corrected Text",
+        data=output_buffer.getvalue(),
+        file_name="corrected_text.txt",
+        mime="text/plain"
+    )
