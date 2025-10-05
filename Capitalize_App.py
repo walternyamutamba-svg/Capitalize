@@ -70,11 +70,27 @@ def capitalize_smartly(text: str) -> str:
 # -----------------------------------
 st.image("logo.png", use_container_width=True)
 st.set_page_config(page_title="Smart Capitalizer", page_icon="📝", layout="centered")
-st.title("📝 Smart Text Capitalizer")
-st.write(
-    "This app automatically fixes capitalization, spacing, and punctuation. "
-    "You can either type text manually or upload a `.txt` file."
+st.title("🤖 Meet Your Friendly Robot!")
+
+st.markdown("""
+**Name:** RoboHelper 3000  
+**Function:** Assists humans with text processing, calculations, and keeping things tidy!  
+**Special Features:**  
+- 📝 Can fix your capitalization automatically  
+- ⚡ Processes text at lightning speed  
+ 
+**Fun Fact:**  
+RoboHelper 3000 loves long walks through lines of text and debugging adventures!
+""")
 )
+st.write(
+    "Walter Mudavanhu Nyamutamba\n"
+    "Sylvestre Mukiza\n"
+    "Mireille IRAKOZE\n"
+    "Joelle SAFI"
+)
+
+
 
 # Tabs for input method
 tab1, tab2 = st.tabs(["✍️ Type Text", "📂 Upload File"])
@@ -119,5 +135,6 @@ if input_text:
         file_name="corrected_text.txt",
         mime="text/plain"
     )
+
 
 
