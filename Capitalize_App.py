@@ -82,7 +82,6 @@ st.markdown("""
 **Fun Fact:**  
 RoboHelper 3000 loves long walks through lines of text and debugging adventures!
 """)
-)
 st.write(
     "Walter Mudavanhu Nyamutamba\n"
     "Sylvestre Mukiza\n"
@@ -135,6 +134,7 @@ if input_text:
         file_name="corrected_text.txt",
         mime="text/plain"
     )
+
 
 
 
