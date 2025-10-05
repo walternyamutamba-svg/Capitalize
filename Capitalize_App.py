@@ -70,7 +70,17 @@ def capitalize_smartly(text: str) -> str:
 # -----------------------------------
 st.image("logo.png", use_container_width=True)
 st.set_page_config(page_title="Smart Capitalizer", page_icon="📝", layout="centered")
+st.markdown("""
+**Group Members:**  
+- Walter Nyamutamba  
+- Sylvestre Mukiza 
+- Mireille IRAKOZE 
+- Patrick Nizetimana  
+- Joelle SAFI
+""")
 st.title("🤖 Meet Your Friendly Robot!")
+
+
 
 st.markdown("""
 **Name:** RoboHelper 3000  
@@ -82,12 +92,6 @@ st.markdown("""
 **Fun Fact:**  
 RoboHelper 3000 loves long walks through lines of text and debugging adventures!
 """)
-st.write(
-    "Walter Mudavanhu Nyamutamba\n"
-    "Sylvestre Mukiza\n"
-    "Mireille IRAKOZE\n"
-    "Joelle SAFI"
-)
 
 
 
@@ -134,6 +138,7 @@ if input_text:
         file_name="corrected_text.txt",
         mime="text/plain"
     )
+
 
 
 
