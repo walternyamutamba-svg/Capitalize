@@ -1,5 +1,6 @@
 import streamlit as st
 import io
+import base64
 
 # -----------------------------------
 # Capitalization Function
@@ -59,9 +60,52 @@ def capitalize_smartly(text: str) -> str:
     return "\n".join(corrected_lines)
 
 
+
+# Function to set background with overlay
+def set_background_with_overlay(image_file):
+    # Read image and encode in base64
+    with open(image_file, "rb") as file:
+        encoded = base64.b64encode(file.read()).decode()
+    
+    # Combine background + overlay CSS
+    page_bg_css = f"""
+    <style>
+    /* Background image */
+    .stApp {{
+        background-image: url("data:image/jpg;base64,{encoded}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;  /* Needed for overlay positioning */
+    }}
+
+    /* Overlay to dim background */
+    .stApp::before {{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.4);  /* 40% white */
+        z-index: 0;
+    }}
+
+    /* Bring content above overlay */
+    .block-container {{
+        position: relative;
+        z-index: 1;
+    }}
+    </style>
+    """
+    st.markdown(page_bg_css, unsafe_allow_html=True)
+
+# ✅ Call the function
+set_background_with_overlay("logo.png")
 # -----------------------------------
 # Streamlit App
 # -----------------------------------
+st.image("logo.png", use_container_width=True)
 st.set_page_config(page_title="Smart Capitalizer", page_icon="📝", layout="centered")
 st.title("📝 Smart Text Capitalizer")
 st.write(
@@ -112,3 +156,4 @@ if input_text:
         file_name="corrected_text.txt",
         mime="text/plain"
     )
+
