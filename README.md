@@ -1,4 +1,12 @@
 # ✨ Capitalize Smartly — Jupyter Notebook Project
+## 👥 Group Members
+
+The project was developed by the following team:
+
+- **Walter Nyamutamba**  
+- **Sylvestre Mukiza**  
+- **Mireille IRAKOZE**  
+- **Joelle SAFI**
 
 This project provides a **smart text capitalization algorithm**, implemented and demonstrated in a Jupyter Notebook. It automatically fixes common writing issues such as missing capitalization, excessive spacing, and standalone lowercase `i`.  
 
